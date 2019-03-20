@@ -2,26 +2,52 @@
 
 2. Escreva o texto "Ola mundo cruel!" em um arquivo denominado "Ola_mundo.txt". Apresente o conteúdo deste arquivo no terminal.
 
+touch Ola_mundo.txt
+echo "Ola mundo creul!" >> Olamundo.txt
+
 3. Apresente o nome de todos os arquivos e pastas na pasta 'root'.
+
+pwd (para conferir se esta na pasta 'root')
+ls 
 
 4. Apresente o tipo de todos os arquivos e pastas na pasta 'root'.
 
+ls -l
+
 5. Apresente somente as pastas dentro da pasta 'root'.
 
+ls -l | grep "^d"
+
 6. Descubra em que dia da semana caiu o seu aniversário nos últimos dez anos.
+
+cal Março 2009
 
 7. Para as questões a seguir, use a pasta no endereço https://github.com/DiogoCaetanoGarcia/Sistemas_Embarcados/raw/master/Questoes/02_Intro_Linux_arqs.zip
 
 8. Liste somente os arquivos com extensão .txt.
 
+ls | grep .txt
+
 9. Liste somente os arquivos com extensão .png.
+
+ls | grep .png
 
 10. Liste somente os arquivos com extensão .jpg.
 
+ls | grep .jpg
+
 11. Liste somente os arquivos com extensão .gif.
+
+ls | grep .gif
 
 12. Liste somente os arquivos que contenham o nome 'cal'.
 
+ls | grep cal
+
 13. Liste somente os arquivos que contenham o nome 'tux'.
 
+ls | grep tux
+
 14. Liste somente os arquivos que comecem com o nome 'tux'.
+
+ls | grep "tux"*
