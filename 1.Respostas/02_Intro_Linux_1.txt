@@ -24,24 +24,85 @@ Tab
 
 6. Quais botões do teclado apresentam instruções escritas anteriormente?
 
+seta para cima
+
 7. Apresente os respectivos comandos no terminal para: 
 (a) Obter mais informações sobre um comando. 
+
+man find
+
 (b) Apresentar uma lista com os arquivos dentro de uma pasta. 
+
+ls 
+
 (c) Apresentar o caminho completo da pasta. 
+
+pwd
+
 (d) Trocar de pasta. 
+
+cd, para trocar para uma pasta acima (cd .. )
+
 (e) Criar uma pasta. 
+
+mkdir
+
 (f) Apagar arquivos definitivamente. 
+
+rm 
+
 (g) Apagar pastas definitivamente. 
+
+rmdir
+
 (h) Copiar arquivos. 
+
+cp <origem> <destino>
+
 (i) Copiar pastas. 
-(j) Mover arquivos. 
-(k) Mover pastas.
+
+cp -r <~/origem> <~/destino>
+
+(j) Mover arquivos.
+
+mv <origem> <destino
+
+(k) Mover pastas. 
+  
+mv <origem> <destino>
+  
 (l) Renomear pastas. 
-(m) Apresentar o conteúdo de um arquivo. 
+
+mv <nome_origem> <nome_novo>
+
+(m) Apresentar o conteúdo de um arquivo.
+
+cat <
+
 (n) Apresentar o tipo de um arquivo. 
+
+
+
 (o) Limpar a tela do terminal.
+
+clear
+
 (p) Encontrar ocorrências de palavras-chave em um arquivo-texto. 
+
+cat <nome do arquivo.Extensao> | grep <palavra>
+
 (q) Ordenar informações em um arquivo-texto.
-(r) Substituir ocorrências de palavras-chave em um arquivo-texto.
+
+sort -argumento
+
+(r) Substituir ocorrências de palavras-chave em um arquivo-texto. 
+
+sed
+
 (s) Conferir se dois arquivos são iguais. 
+
+diff
+
 (t) Escrever algo na tela.
+
+random cat
