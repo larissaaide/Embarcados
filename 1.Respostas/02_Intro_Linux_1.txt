@@ -81,7 +81,7 @@ cat <
 
 (n) Apresentar o tipo de um arquivo. 
 
-
+file
 
 (o) Limpar a tela do terminal.
 
@@ -93,7 +93,7 @@ cat <nome do arquivo.Extensao> | grep <palavra>
 
 (q) Ordenar informações em um arquivo-texto.
 
-sort -argumento
+sort <-opçao> <arquivo>
 
 (r) Substituir ocorrências de palavras-chave em um arquivo-texto. 
 
