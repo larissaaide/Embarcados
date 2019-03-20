@@ -16,9 +16,11 @@ Um shell (em português, casca ou concha) é uma interface de usuário para aces
 
 4. Por que é importante evitar executar o terminal como super-usuário?
 
-
+O super Usuario é um usuario com UID (User ID) igual a 0, através dele é possível fazer qualquer coisa com o sistema operacional, por exemplo, remover ou adicionar privilégios de impressão para determinados usuários. Porém deve-se tomar cuidado ao utilizar um usuário Root, ao definir uma senha fraca, ou alguém conseguir acesso ao Root de alguma forma, ele pode executar comandos, ou até mesmo descobrir as brechas e começar a rodar processos secretos 
 
 5. Qual botão do teclado completa o que o usuário escreve no terminal, de acordo com o contexto?
+
+Tab 
 
 6. Quais botões do teclado apresentam instruções escritas anteriormente?
 
