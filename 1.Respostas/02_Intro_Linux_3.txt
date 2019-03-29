@@ -22,7 +22,7 @@ Não limite o script a 3 meses. Ele deve funcionar para vários casos, como por 
 #!/bin/bash
 
 if [[ $# -lt 2 ]]; then
-	echo "Insira o nome do arquivo (cals.sh), o numero referente ao mês (1 para Janeiro, 2 para Fevereiro, 3 Março...) e o ano. Ex: ./cals.sh 1 2019 2 2020"
+	echo "Insira o nome do arquivo (cals.sh), o numero referente ao mês (1 para Janeiro, 2 para Fevereiro, 3 para Março...) e o ano. Ex: ./cals.sh 1 2019 2 2020"
 	exit 1
 fi
 
