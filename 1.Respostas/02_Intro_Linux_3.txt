@@ -27,14 +27,14 @@ if [[ $# -lt 2 ]]; then
 fi
 
 i=0
-for arg in $*; do
-	args[i]=$arg
-	i=`expr $i + 1`
+for a in $*; do
+	b[i]=$a
+	i=$((i+1))
 done
 
 for ((i = 0; i < $#;)); do
-	cal ${args[i]} ${args[i+1]}
-	i=`expr $i + 2` 
+	cal ${b[i]} ${b[i+1]}
+	i=$((i+2)) 
 done
 
 
@@ -140,5 +140,26 @@ https://github.com/DiogoCaetanoGarcia/Sistemas_Embarcados/raw/master/Aulas/01_Li
 https://github.com/DiogoCaetanoGarcia/Sistemas_Embarcados/raw/master/Aulas/01_Sistemas%20Embarcados%20-%20Aula%201%20-%20Introdu%C3%A7%C3%A3o.pdf
 Estes são links para slides de 3 aulas desta dsciplina, um para cada linha do arquivo sites.txt. Faça um script que faz o download destes slides automaticamente, a partir do arquivo sites.txt. (DICA: use o comando wget.)
 
+#!/bin/bash
+while read site
+do 
+wget $site
+done < sites.txt
+
 Faça um script chamado up.sh que sobe N níveis na pasta onde você estiver, usando $1 como parâmetro de entrada. 
 Por exemplo, se você estiver em /home/aluno/Documents e executar ./up.sh 2, você automaticamente vai para a pasta /home.
+
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+	echo "Escreva a quantidade de arquivo"
+	exit 1
+fi
+
+
+i=0
+while [$i -lt $1]; do
+	cd ..
+	i=$((i+1))
+
+done
