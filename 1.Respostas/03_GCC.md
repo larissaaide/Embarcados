@@ -13,6 +13,7 @@ int main(void)
 
 
  return 0;
+ 
 }
 
 2. Crie um código em C que pergunta ao usuário o seu nome, e imprime no terminal "Ola " e o nome do usuário. Por exemplo, considerando que o código criado recebeu o nome de 'ola_usuario_1':
@@ -22,6 +23,20 @@ $ ./ola_usuario_1
 $ Digite o seu nome: Eu
 $ Ola Eu
 ```
+**Resposta** 
+
+#include <stdio.h>
+
+int main(void) 
+{
+ 
+char nome [30];	
+ printf ("Digite seu nome: \n");
+ scanf ("%s", nome);
+ printf ("Olá %s\n", nome);
+
+ return 0;
+}
 
 3. Apresente os comportamentos do código anterior nos seguintes casos:
 
@@ -30,33 +45,49 @@ $ Ola Eu
 $ ./ola_usuario_1
 $ Digite o seu nome: Eu Mesmo
 ```
+**Resposta**
+Olá Eu
 
 (b) Se o usuário insere mais de um nome entre aspas duplas. Por exemplo:
 ```bash
 $ ./ola_usuario_1
 $ Digite o seu nome: "Eu Mesmo"
 ```
+**Resposta**
+Olá "Eu
 
 (c) Se é usado um pipe. Por exemplo:
 ```bash
 $ echo Eu | ./ola_usuario_1
 ```
+**Resposta**
+Digite seu nome:
+Olá Eu
 
 (d) Se é usado um pipe com mais de um nome. Por exemplo:
 ```bash
 $ echo Eu Mesmo | ./ola_usuario_1
 ```
+**Resposta**
+Digite seu nome:
+Olá Eu
 
 (e) Se é usado um pipe com mais de um nome entre aspas duplas. Por exemplo:
 ```bash
 $ echo "Eu Mesmo" | ./ola_usuario_1
 ```
+**Resposta**
+Digite seu nome:
+Olá Eu
 
 (f) Se é usado o redirecionamento de arquivo. Por exemplo:
 ```bash
 $ echo Ola mundo cruel! > ola.txt
 $ ./ola_usuario_1 < ola.txt
 ```
+**Resposta**
+Digite seu nome:
+Olá Ola
 
 4. Crie um código em C que recebe o nome do usuário como um argumento de entrada (usando as variáveis argc e *argv[]), e imprime no terminal "Ola " e o nome do usuário. Por exemplo, considerando que o código criado recebeu o nome de 'ola_usuario_2':
 
