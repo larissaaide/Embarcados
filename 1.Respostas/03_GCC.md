@@ -208,7 +208,7 @@ int main(int argc, char **argv)
 {
 	printf("Numero de entradas = %d\n",argc);
 	if(argc==1)
-			printf("Informe o argumento após inserir o nome do programa (Ex: ./argg.out Argumento) \n");
+		printf("Informe o argumento após inserir o nome do programa (Ex: ./argg.out Argumento) \n");
 	else
 		printf("Argumento: ");
 	for (int i=1; i<argc; i++)
