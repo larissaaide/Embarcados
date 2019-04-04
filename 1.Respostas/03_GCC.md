@@ -2,6 +2,7 @@ Para todas as questões, compile-as com o gcc e execute-as via terminal.
 
 1. Crie um "Olá mundo!" em C.
 
+```bash
 **Resposta** 
 
 #include <stdio.h>
@@ -15,6 +16,7 @@ int main(void)
  return 0;
  
 }
+```
 
 2. Crie um código em C que pergunta ao usuário o seu nome, e imprime no terminal "Ola " e o nome do usuário. Por exemplo, considerando que o código criado recebeu o nome de 'ola_usuario_1':
 
@@ -23,6 +25,9 @@ $ ./ola_usuario_1
 $ Digite o seu nome: Eu
 $ Ola Eu
 ```
+
+
+```bash
 **Resposta** 
 
 #include <stdio.h>
@@ -37,6 +42,7 @@ char nome [30];
 
  return 0;
 }
+```
 
 3. Apresente os comportamentos do código anterior nos seguintes casos:
 
@@ -95,6 +101,7 @@ Olá Ola
 $ ./ola_usuario_2 Eu
 $ Ola Eu
 ```
+```bash
 **Resposta**
 
 #include <stdio.h>
@@ -108,7 +115,7 @@ int main(int argc, char **argv)
 	return 0;
 }
 
-
+```
 5. Apresente os comportamentos do código anterior nos seguintes casos:
 
 (a) Se o usuário insere mais de um nome.
@@ -162,6 +169,7 @@ $ Ola Eu
 $ Numero de entradas = 2
 ```
 
+```bash
 **Resposta**
 
 #include <stdio.h>
@@ -183,7 +191,7 @@ int main(int argc, char **argv)
 	printf("\n");
 	return 0;
 }
-
+```
 
 7. Crie um código em C que imprime todos os argumentos de entrada fornecidos pelo usuário. Por exemplo, considerando que o código criado recebeu o nome de 'ola_argumentos':
 
@@ -191,6 +199,7 @@ int main(int argc, char **argv)
 $ ./ola_argumentos Eu Mesmo e Minha Pessoa
 $ Argumentos: Eu Mesmo e Minha Pessoa
 ```
+```bash
 **Resposta**
 
 #include <stdio.h>
@@ -210,10 +219,11 @@ int main(int argc, char **argv)
 	printf("\n");
 	return 0;
 }
-
+```
 8. Crie uma função que retorna a quantidade de caracteres em uma string, usando o seguinte protótipo:
 `int Num_Caracs(char *string);` Salve-a em um arquivo separado chamado 'num_caracs.c'. Salve o protótipo em um arquivo chamado 'num_caracs.h'. Compile 'num_caracs.c' para gerar o objeto 'num_caracs.o'.
 
+```bash
 **Resposta**
 
 #include <stdio.h>
@@ -228,6 +238,7 @@ string++;
 
 return i;
 }
+```
 
 9. Re-utilize o objeto criado na questão 8 para criar um código que imprime cada argumento de entrada e a quantidade de caracteres de cada um desses argumentos. Por exemplo, considerando que o código criado recebeu o nome de 'ola_num_caracs_1':
 
@@ -237,6 +248,7 @@ $ Argumento: ./ola_num_caracs_1 / Numero de caracteres: 18
 $ Argumento: Eu / Numero de caracteres: 2
 $ Argumento: Mesmo / Numero de caracteres: 5
 ```
+```bash
 **Resposta**
 
 #include <stdio.h>
@@ -252,7 +264,7 @@ i++;
 }
 return 0;
 }
-
+```
 10. Crie um Makefile para a questão anterior.
 
 
