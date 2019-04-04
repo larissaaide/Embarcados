@@ -178,9 +178,9 @@ int main(int argc, char **argv)
 {
 	printf("Numero de entradas = %d\n",argc);
 	if(argc==1)
-			printf("Informe seu nome após inserir o nome do programa (Ex: ./argg.out Fulano) \n");
+	       printf("Informe seu nome após inserir o nome do programa (Ex: ./argg.out Fulano) \n");
 	else
-		printf("Olá ");
+	       printf("Olá ");
 
 	for (int i=1; i<argc; i++)
 	{
