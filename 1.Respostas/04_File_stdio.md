@@ -2,6 +2,24 @@ Para todas as questões, utilize as funções da biblioteca `stdio.h` de leitura
 
 1. Crie um código em C para escrever "Ola mundo!" em um arquivo chamado 'ola_mundo.txt'.
 
+```bash
+**Resposta**
+
+
+#include <stdio.h>
+
+int main(int argc, char const *argv[])
+{
+	FILE * fp; // Declaração da estrutura
+	fp = fopen("ola_mundo.txt","w+"); // w+ = empty file for r/w
+	fprintf(fp, "Ola Mundo!\n");
+	if (!fp)
+        printf ("Erro na abertura do arquivo.");
+	fclose(fp);
+	return 0;
+}
+```
+
 2. Crie um código em C que pergunta ao usuário seu nome e sua idade, e escreve este conteúdo em um arquivo com o seu nome e extensão '.txt'. Por exemplo, considerando que o código criado recebeu o nome de 'ola_usuario_1':
 
 ```bash
@@ -13,6 +31,44 @@ $ Nome: Eu
 $ Idade: 30 anos
 ```
 
+```bash
+**Resposta**
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+	FILE * fp; // Declaração da estrutura
+	char nome [100];
+	char idade [20]; 
+	char nome_arq[100];
+
+	printf("Informe seu nome: \n");
+	fgets(nome,100,stdin);
+	printf("Informe sua idade: \n");
+	fgets(idade,20,stdin);  
+
+	strcpy(nome_arq,nome);
+	strcat(nome_arq,".txt");
+
+	fp = fopen(nome_arq,"w");
+
+	fputs("Nome: ",fp);
+	fputs(nome,fp);
+	fputs("\n",fp);
+	fputs("Idade: ",fp);
+	fputs(idade,fp);
+	fputs(" anos\n",fp);
+
+	fclose(fp);
+	return 0;
+
+}
+
+```
+
 3. Crie um código em C que recebe o nome do usuário e e sua idade como argumentos de entrada (usando as variáveis `argc` e `*argv[]`), e escreve este conteúdo em um arquivo com o seu nome e extensão '.txt'. Por exemplo, considerando que o código criado recebeu o nome de 'ola_usuario_2':
 
 ```bash
@@ -21,6 +77,8 @@ $ cat Eu.txt
 $ Nome: Eu
 $ Idade: 30 anos
 ```
+
+
 
 4. Crie uma função que retorna o tamanho de um arquivo, usando o seguinte protótipo: `int tam_arq_texto(char *nome_arquivo);` Salve esta função em um arquivo separado chamado 'bib_arqs.c'. Salve o protótipo em um arquivo chamado 'bib_arqs.h'. Compile 'bib_arqs.c' para gerar o objeto 'bib_arqs.o'.
 
