@@ -226,6 +226,7 @@ int main(int argc, char **argv)
 ```bash
 **Resposta**
 
+****************num_caracs.c****************
 #include <stdio.h>
 
 int Num_Caracs(char *string){
@@ -238,6 +239,15 @@ string++;
 
 return i;
 }
+
+****************num_caracs.h****************
+#ifndef _H_NUM_CARACS
+#define _H_NUM_CARACS
+
+int Num_Caracs(char *string);
+
+#endif
+
 ```
 
 9. Re-utilize o objeto criado na questão 8 para criar um código que imprime cada argumento de entrada e a quantidade de caracteres de cada um desses argumentos. Por exemplo, considerando que o código criado recebeu o nome de 'ola_num_caracs_1':
@@ -267,6 +277,19 @@ return 0;
 ```
 10. Crie um Makefile para a questão anterior.
 
+```bash
+
+ola_num_caracs: ola_num_caracs_1.o num_caracs.o
+	gcc $(CFLAGS) -o ola_num_caracs ola_num_caracs_1.o num_caracs.o
+ola_num_caracs_1.o: num_caracs.h
+	gcc $(CFLAGS) -c ola_num_caracs_1.c
+num_caracs.o: num_caracs.c num_caracs.h
+	gcc $(CFLAGS) -c num_caracs.c
+clean:
+	rm *.o
+remove:
+	rm ola_num_caracs
+```
 
 11. Re-utilize o objeto criado na questão 8 para criar um código que imprime o total de caracteres nos argumentos de entrada. Por exemplo, considerando que o código criado recebeu o nome de 'ola_num_caracs_2':
 
