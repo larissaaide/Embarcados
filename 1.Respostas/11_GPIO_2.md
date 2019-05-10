@@ -66,52 +66,70 @@ dobrar cada vez que o botão for pressionado. A frequência máxima é de 64 Hz,
 
 ```bash
 #include <wiringPi.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#define SAIDA 7
-#define ENTRADA 11
-#define MAX_MEIO_PERIODO (1e6/2)
-#define MIN_MEIO_PERIODO (1e6/128)
+wiringPi
+int main(){
 
-int meio_periodo = MAX_MEIO_PERIODO;
+	int led = 4; 
+	int btn = 1; 
+	int t = 0;
+	int tr = 0;
 
-void muda_freq()
-{
-	meio_periodo /= 2;
-	if(meio_periodo<MIN_MEIO_PERIODO)
-		meio_periodo = MAX_MEIO_PERIODO;
-}
+	float f = 1;
+	float T = 1;
 
-int main(void)
-{
-	pid_t filho;
+	pid_t pid; 
+	int fd[2];  	
+	pid = fork(); 	
+	pipe(fd); 	
+
 	wiringPiSetup();
-	pinMode(SAIDA, OUTPUT);
-	pinMode(ENTRADA, INPUT);
-	pullUpDnControl(ENTRADA, PUD_UP);
-	signal(SIGUSR1, muda_freq);
-	filho = fork();
-	if(filho==0)
-	{
+
+	if(pid == 0) //cria o processo filho
+
+	{ 
 		while(1)
+	
 		{
-			digitalWrite(SAIDA, HIGH);
-			usleep(meio_periodo);
-			digitalWrite(SAIDA, LOW);
-			usleep(meio_periodo);
-		}
-	}
-	else
+		
+			close(fd[1]); 
+			printf("Processo filho criado!\n");
+			read(fd[0], &tr, sizeof(tr)); 		
+			printf("Valor de t lido no filho: %d \n", tr);
+			digitalWrite(led, LOW);
+			usleep(tr);
+			digitalWrite(led, HIGH);
+			usleep(tr);
+	    }
+    }
+
+	else 
+
 	{
-		while(1)
-		{
-			while(digitalRead(ENTRADA)>0);
-			kill(filho,SIGUSR1);
-			while(digitalRead(ENTRADA)==0);
-			usleep(100000);
-		}
+		printf("processo pai criado\n");
+			while (1)
+			{
+		
+				usleep(50000);
+				if(digitalRead(btn)==1)
+				{
+					close(fd[0]); 			
+					printf("Valor de t escrito: %d\n", t);
+					f = 2*f;
+					if(f>64)
+					{
+
+						f = 1;
+						T = (1/(2*f))*1000000;
+						t = (int) T;
+						write(fd[1], &t, sizeof(t)); 		
+					}
+				}
 	}
+return 0;
 }
 ```
