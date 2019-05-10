@@ -49,6 +49,78 @@ int main (int argc, char* const argv[])
     }
 	return 0;
 }
+
+**Códio Servidor**
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <signal.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+
+char socket_name[50];
+int socket_id;
+void sigint_handler(int signum);
+void end_server(void);
+
+int main (int argc, char* const argv[])
+{
+	struct sockaddr socket_struct;
+
+	strcpy(socket_name, argv[1]); //Recebe-se socket name por argv[1]
+	signal(SIGINT, sigint_handler); //Associando a função para ser fechada com o "CTRL+C"
+	socket_id = socket(PF_LOCAL, SOCK_STREAM, 0);//criando o socket
+	socket_struct.sa_family = AF_LOCAL;
+	strcpy(socket_struct.sa_data, socket_name);
+       /*Quando	criado,	um	socket	não	tem	um	endereço local e nem um	
+		endereço remoto. Um	servidor usa o procedimento	bind para	
+		prover um número de	porta de protocolo em que o	servidor	
+		esperará	por	contato.*/
+	bind(socket_id, &socket_struct, sizeof(socket_struct));	
+	listen(socket_id, 10);
+
+	while(1)
+	{
+		struct sockaddr cliente;
+		int socket_id_cliente;
+		int msg;
+		socklen_t cliente_len;
+
+		fprintf(stderr, "Aguardando a conexao de um cliente... ");
+		socket_id_cliente = accept(socket_id, &cliente, &cliente_len);
+		read(socket_id_cliente, &msg, 1);
+		fprintf(stderr,"\n\n   Mensagem = %d\n\n", msg);
+		if (msg == 10)
+		{
+			fprintf(stderr, "Cliente pediu para o servidor fechar.\n");
+			end_server();
+		}
+
+		fprintf(stderr, "Fechando a conexao com o cliente... ");
+		close(socket_id_cliente);
+		fprintf(stderr, "Feito!\n");
+	}
+	return 0;
+}
+
+void sigint_handler(int signum)
+{
+	fprintf(stderr, "\nRecebido o sinal CTRL+C... vamos desligar o servidor!\n");
+	end_server();
+}
+
+void end_server(void)
+{
+	fprintf(stderr, "Apagando \"%s\" do sistema... ", socket_name);
+	unlink(socket_name);
+	fprintf(stderr, "Feito!\n");
+	fprintf(stderr, "Fechando o socket local... ");
+	close(socket_id);
+	fprintf(stderr, "Feito!\n");
+	exit(0);
+}
 ```
 
 2. Crie dois programas em C para criar um cliente e um servidor. Execute a seguinte conversa entre cliente e servidor:
