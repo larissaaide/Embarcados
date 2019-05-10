@@ -31,22 +31,22 @@ int main (int argc, char* const argv[])
 	fprintf(stderr, "Feito!\n");
 	fprintf(stderr, "Conectando o socket ao servidor no endereco local \"%s\"... ", socket_name);
     
-//     DEFININDO ESTRUTURA sockaddr
+	//DEFININDO ESTRUTURA sockaddr
 	name.sa_family = AF_LOCAL;
 	strcpy(name.sa_data, socket_name);
-    connect(socket_id, &name, sizeof(name));    //ASSOCIANDO O DESCRITOR A ESTRUTURA, QUE TEM O ENDERECO
+   	connect(socket_id, &name, sizeof(name));    //ASSOCIANDO O DESCRITOR A ESTRUTURA, QUE TEM O ENDERECO
 	fprintf(stderr, "Feito!\n");
 	fprintf(stderr, "Mandando mensagem ao servidor... ");
 
-    write(socket_id, &n, sizeof(n));    //ESCRENDO A MENSAGEM
-    sleep(1);
+   	write(socket_id, &n, sizeof(n));    //ESCRENDO A MENSAGEM
+        sleep(1);
     
-    fprintf(stderr, "Feito!\n");
+        fprintf(stderr, "Feito!\n");
 
 	fprintf(stderr, "Fechando o socket local... ");
 	close(socket_id);
 	fprintf(stderr, "Feito!\n");
-	}
+    }
 	return 0;
 }
 ```
