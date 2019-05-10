@@ -17,7 +17,7 @@ float val = 500000;
 	  pinMode(pin, OUTPUT);
 	  digitalWrite(pin, LOW);
 	  usleep(val);
-  	digitalWrite(pin, HIGH);
+  	  digitalWrite(pin, HIGH);
 	  usleep(val);
 
   }
@@ -38,17 +38,17 @@ return 0;
 	int pin = 4;	
 
 	float f = 0, 
-  float t = 0;
+  	float t = 0;
 
-		if(wiringPiSetup()== -1)
-	      return -1;
-		    printf("Escolha uma frequência:\n");
-		    scanf("%f", &f);
-		    t = (1/(2*f))*1000000;
+	if(wiringPiSetup()== -1)
+	     return -1;
+	     printf("Escolha uma frequência:\n");
+	     scanf("%f", &f);
+	     t = (1/(2*f))*1000000;
 
 
 	while(1)
-  {
+               {
 	
 		pinMode(pin, OUTPUT);
 		digitalWrite(pin, LOW);
