@@ -134,6 +134,8 @@ SERVIDOR: Sim, mas é uma coisa difícil de ser praticada até mesmo por um velh
 
 
 ```
+**Códio Cliente**
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -207,6 +209,126 @@ int main (int argc, char* const argv[])
 	close(socket_id);
 	fprintf(stderr, "Feito!\n");
 	return 0;
+}
+
+
+**Códio Servidor**
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <signal.h>
+
+
+char socket_name[50];
+int socket_id;
+void sigint_handler(int signum);
+void print_client_message(int client_socket);
+void end_server(void);
+
+int main (int argc, char* const argv[])
+{
+	struct sockaddr socket_struct;
+	strcpy(socket_name, argv[1]);
+	signal(SIGINT, sigint_handler);
+	socket_id = socket(PF_LOCAL, SOCK_STREAM, 0);
+	socket_struct.sa_family = AF_LOCAL;
+	strcpy(socket_struct.sa_data, socket_name);
+	bind(socket_id, &socket_struct, sizeof(socket_struct));
+	
+	listen(socket_id, 10);
+	
+	while(1)
+	{
+		struct sockaddr cliente;
+		int socket_id_cliente;
+
+		socklen_t cliente_len;
+
+		fprintf(stderr, "Aguardando a conexao de um cliente... ");
+
+		socket_id_cliente = accept(socket_id, &cliente, &cliente_len);
+		fprintf(stderr, "Feito!\n");
+
+		fprintf(stderr, "Obtendo a informacao transmitida pelo cliente...");
+	
+		print_client_message(socket_id_cliente);
+		fprintf(stderr, "Feito!\n");
+
+		fprintf(stderr, "Fechando a conexao com o cliente... ");
+		close(socket_id_cliente);
+		fprintf(stderr, "Feito!\n");
+	}
+	return 0;
+}
+
+void sigint_handler(int signum)
+{
+	fprintf(stderr, "\nRecebido o sinal CTRL+C... vamos desligar o servidor!\n");
+	end_server();
+}
+
+
+void print_client_message(int client_socket)
+{
+	char mensagem_1[] = "Não façais nada violento, praticai somente aquilo que é justo e equilibrado.";    
+	char mensagem_2[] = "Sim, mas é uma coisa difícil de ser praticada até mesmo por um velho como eu...";
+	int length;
+	char* text;
+
+	read(client_socket, &length, sizeof (length));
+	text = (char*) malloc (length);
+	read(client_socket, text, length);
+	fprintf(stderr, "\n\nServidor leu: %s.\n\n", text);
+    
+	length = strlen("c") + 1;
+	write(client_socket, &length, sizeof(length));
+	write(client_socket, "c", length);
+
+ 	length = strlen(mensagem_1) + 1;
+	write(client_socket, &length, sizeof(length));
+	write(client_socket, mensagem_1, length);
+
+	while(1)
+	{   
+		read(client_socket, &length, sizeof (length));
+		text = (char*) malloc (length);
+		read(client_socket, text, length);    
+
+		if(!strcmp (text, "c"))
+		{
+			read(client_socket, &length, sizeof (length));
+			text = (char*) malloc (length);
+			read(client_socket, text, length);
+			fprintf(stderr, "\n\nServidor leu: %s.\n\n", text);
+			break;
+		}
+	}
+ 
+	length = strlen("c") + 1;
+	write(client_socket, &length, sizeof(length));
+	write(client_socket, "c", length);
+
+ 	length = strlen(mensagem_2) + 1;
+	write(client_socket, &length, sizeof(length));
+	write(client_socket, mensagem_2, length); 
+    
+    end_server();
+}
+
+
+void end_server(void)
+{
+	fprintf(stderr, "Apagando \"%s\" do sistema... ", socket_name);
+	unlink(socket_name);
+	fprintf(stderr, "Feito!\n");
+	fprintf(stderr, "Fechando o socket local... ");
+	close(socket_id);
+	fprintf(stderr, "Feito!\n");
+	exit(0);
 }
 ```
 
