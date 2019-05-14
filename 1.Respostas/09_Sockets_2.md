@@ -132,4 +132,82 @@ CLIENTE: Mas até uma criança de três anos sabe disso!
 SERVIDOR: Sim, mas é uma coisa difícil de ser praticada até mesmo por um velho como eu...
 ```
 
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <unistd.h>
+
+int main (int argc, char* const argv[])
+{
+	char *socket_name;
+	int socket_id;
+	struct sockaddr name;
+    int length;
+
+	socket_name = argv[1];
+	char mensagem_1[] = "Pai, qual é a verdadeira essência da sabedoria?";
+    char mensagem_2[] = "Mas até uma criança de três anos sabe disso!";
+	
+    char* text;
+	socket_id = socket(PF_LOCAL, SOCK_STREAM,0); 
+	name.sa_family = AF_LOCAL;
+	strcpy(name.sa_data, socket_name);	
+    connect(socket_id, &name, sizeof(name));
+
+    printf("\n%s\n", mensagem_1);
+    length = strlen(mensagem_1) + 1;
+	write(socket_id, &length, sizeof(length));
+	write(socket_id, mensagem_1, length);
+    
+	while(1)
+	{   
+		read(socket_id, &length, sizeof (length));
+		text = (char*) malloc (length);
+		read(socket_id, text, length);    
+
+		if(!strcmp (text, "chave"))
+		{
+			read(socket_id, &length, sizeof (length));
+			text = (char*) malloc (length);
+			read(socket_id, text, length);
+			fprintf(stderr, "\n\nCliente leu: %s.\n\n", text);
+			break;
+		}
+	}   
+
+    printf("\n%s\n", mensagem_2);
+	length = strlen("chave") + 1;
+	write(socket_id, &length, sizeof(length));
+	write(socket_id, "chave", length);
+
+    length = strlen(mensagem_2) + 1;
+	write(socket_id, &length, sizeof(length));
+	write(socket_id, mensagem_2, length);
+
+	while(1)
+	{   
+		read(socket_id, &length, sizeof (length));
+		text = (char*) malloc (length);
+		read(socket_id, text, length);    
+
+		if(!strcmp (text, "chave"))
+		{
+			read(socket_id, &length, sizeof (length));
+			text = (char*) malloc (length);
+			read(socket_id, text, length);
+			fprintf(stderr, "\n\nCliente leu: %s.\n\n", text);
+			break;
+		}
+	}   
+    
+	close(socket_id);
+	fprintf(stderr, "Feito!\n");
+	return 0;
+}
+```
+
 Neste exercício, o cliente deve escrever no terminal as mensagens enviadas e recebidas.
