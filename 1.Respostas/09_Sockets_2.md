@@ -137,7 +137,7 @@ SERVIDOR: Sim, mas é uma coisa difícil de ser praticada até mesmo por um velh
 
 
 ```
-**Códio Cliente**
+***Código Cliente***
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -216,7 +216,7 @@ int main (int argc, char* const argv[])
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-**Códio Servidor**
+***Código Servidor***
 
 #include <stdio.h>
 #include <stdlib.h>
