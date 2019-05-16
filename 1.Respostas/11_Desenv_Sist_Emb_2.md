@@ -21,5 +21,5 @@ Pela instalação da ISO no cartão de memória da Raspberry pi, que já contém
 Escreva o passo-a-passo do desenvolvimento e forneça os links necessários para isto.
 
 ```bash
-Os códigos serão desenvolvidos primeiramente em python e posteriormente me C
+Os códigos serão desenvolvidos primeiramente em  OpenCV python e posteriormente me  OpenCV C
 ```
