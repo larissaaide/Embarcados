@@ -17,6 +17,8 @@ Recebendo o resultado HTML e o escrevendo no arquivo 'saida.html'...
 
 **Página não carregou totalmente
 
+HTTP/1.1 200 OK Date: Thu, 16 May 2019 15:18:59 GMT Expires: -1 Cache-Control: private, max-age=0 Content-Type: text/html; charset=ISO-8859-1 P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info." Server: gws X-XSS-Protection: 0 X-Frame-Options: SAMEORIGIN Set-Cookie: 1P_JAR=2019-05-16-15; expires=Sat, 15-Jun-2019 15:18:59 GMT; path=/; domain=.google.com Set-Cookie: NID=183=13N1tkDABEeTIZq2A22b92e8UZcl9kARk4203Oahsp93sgeQK8aj_Dvjh_y5b1XRw9dbmFbdnbnB0-s4IhavRyhfYMAEaynBn692qOs-qkwMsoA9Hk6EDdDXGE4gSBfy-RaRBXt-eTNEHkEh8dhDW2vEY2OEC6teO3fkUMW95Y0; expires=Fri, 15-Nov-2019 15:18:59 GMT; path=/; domain=.google.com; HttpOnly Accept-Ranges: none Vary: Accept-Encoding Transfer-Encoding: chunked 2dad
+
 (b) www.google.com.br
 
 Pedido HTTP:
